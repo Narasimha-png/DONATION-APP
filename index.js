@@ -1,4 +1,3 @@
-// server/index.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -12,16 +11,13 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(cors());
 app.use(express.json());
-
-// Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error(err));
 
-// Routes
+
 app.use('/api/donate', donationRoutes);
 
-// Home route
 app.get('/', (req, res) => {
     res.render('index');
 });
